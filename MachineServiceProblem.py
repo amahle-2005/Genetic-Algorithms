@@ -71,14 +71,7 @@ class GeneticAlgorithm:
     """mutation: A function to perform mutation."""
     def mutate(self, chromosome):
        raise NotImplementedError("Subclasses should implement this!")
-
-
-""" 
-Rank-Based Selection:
-Sorts the population based on their fitness scores.
-Assigns higher selection probabilities to individuals with better ranks.
-This ensures a balanced selection favoring fitter individuals while keeping diversity.
-"""      
+    
 class RankBasedSelection(GeneticAlgorithm):
     def __init__(self, chromosome_length, n_iter, population_size, cross_rate, mutate_rate):
         super().__init__(chromosome_length, n_iter, population_size, cross_rate, mutate_rate)
@@ -194,11 +187,12 @@ class MachineServicingProblem(RouletteWheelSelection):
         return super().run()
 
 
-machines = [i for i in range(7)] # 10 cities
+machines = [i for i in range(7)] # 10 machines
 widgets_per_machine = [20,15,35,40,15,15,10]
 required_services_per_machine = [2,3,1,1,2,1,1]
 period = 4
 chromosome_length = len(machines)*period
 myMSP = MachineServicingProblem(chromosome_length, 100, 40, 0.9, 0.1, machines, widgets_per_machine,required_services_per_machine)
 myMSP.run()
+
 
